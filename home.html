@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishal Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #111111;
+            --primary: #4b6eff;
+            --card: #f0f0f0;
+        }
+
+        body.dark {
+            --bg: #0c0f17;
+            --text: #ffffff;
+            --primary: #6f8dff;
+            --card: #131a24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            transition: 0.4s ease;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 15px 7%;
+            background: rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 999;
+        }
+
+        nav .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background: var(--text);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 850px) {
+            nav ul {
+                position: absolute;
+                top: 75px;
+                right: -100%;
+                background: var(--card);
+                flex-direction: column;
+                gap: 20px;
+                padding: 25px;
+                width: 220px;
+                border-radius: 12px;
+                transition: 0.4s;
+            }
+            nav ul.active {
+                right: 20px;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Theme Button */
+        #theme-toggle {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 130px 7% 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            margin-top: 15px;
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        .hero-video {
+            width: 420px;
+            border-radius: 20px;
+            overflow: hidden;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-14px); }
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-video {
+                width: 90%;
+            }
+        }
+
+        /* SECTION HEADERS */
+        .section-title {
+            text-align: center;
+            font-size: 34px;
+            margin: 30px 0;
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 60px 7%;
+            display: flex;
+            gap: 40px;
+        }
+
+        .about img {
+            width: 270px;
+            border-radius: 16px;
+        }
+
+        .about p {
+            line-height: 1.7;
+        }
+
+        @media(max-width: 850px) {
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* SERVICES */
+        .services {
+            padding: 50px 7%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            padding: 60px 7%;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 14px;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            background: var(--card);
+            color: var(--text);
+        }
+
+        .contact button {
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .contact button:hover {
+            opacity: 0.8;
+        }
+
+        /* Interactive contact card */
+        .contact-box {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 14px;
+            width: 280px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .contact-box:hover {
+            transform: scale(1.05);
+        }
+
+        @media(max-width: 850px) {
+            .contact {
+                flex-direction: column;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">Rishal Sharma</div>
+
+    <ul id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button id="theme-toggle">Light/Dark</button>
+
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-text">
+        <h1>Crafting Digital Experiences That Inspire, Engage, and Convert</h1>
+        <p>I create modern, stylish, and high performance websites that help brands stand out.  
+        Smooth animations, responsive UI, and clean design — your project deserves nothing less.</p>
+    </div>
+
+    <video class="hero-video" autoplay muted loop>
+        <source src="https://cdn.pixabay.com/vimeo/56753.mp4" type="video/mp4">
+    </video>
+</section>
+
+<!-- ABOUT -->
+<h2 class="section-title" id="about">About Me</h2>
+
+<section class="about">
+    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e" alt="profile">
+
+    <div>
+        <p>
+            I am a passionate web developer specializing in interactive and visually stunning websites.  
+            I focus on clean UI/UX, high performance, and modern design principles that help businesses present their best version online.
+        </p>
+        <p>
+            My work blends creativity with functionality — making sure your website not only looks good, but works flawlessly across all devices.
+        </p>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<h2 class="section-title" id="services">My Services</h2>
+
+<div class="services">
+    <div class="service-card">
+        <h3>Modern Web Design</h3>
+        <p>Clean, responsive and beautiful websites with animations, dark mode, and custom layouts.</p>
+    </div>
+
+    <div class="service-card">
+        <h3>Branding & Identity</h3>
+        <p>Logos, colour palettes, typography systems that strengthen your brand identity.</p>
+    </div>
+
+    <div class="service-card">
+        <h3>Website Optimization</h3>
+        <p>Improve speed, SEO, accessibility, and performance for a flawless user experience.</p>
+    </div>
+</div>
+
+<!-- CONTACT -->
+<h2 class="section-title" id="contact">Contact</h2>
+
+<section class="contact">
+    <form >
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Email Address">
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-box">
+        <h3>Let’s Work Together</h3>
+        <p>Email: rishalsharma665@yourgmail.com</p>
+        <p>Phone: +679 504 6666</p>
+        <p>Location: Fiji</p>
+    </div>
+</section>
+
+<footer>
+    © 2025 Rishal — All Rights Reserved
+</footer>
+
+<script>
+    /* Mobile Menu */
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.onclick = () => {
+        navLinks.classList.toggle("active");
+    };
+
+    /* Theme Toggle */
+    const toggleBtn = document.getElementById("theme-toggle");
+
+    // Load saved theme
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+    }
+
+    toggleBtn.onclick = () => {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("theme",
+            document.body.classList.contains("dark") ? "dark" : "light");
+    };
+</script>
+
+</body>
+</html>
